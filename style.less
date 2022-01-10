@@ -1,0 +1,90 @@
+
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+// Note from @zremboldt
+// This style sheet builds upon the atom-dark.css Preview Theme.
+
+:root {
+  --color-canvas-default: hsl(216, 28%, 7%);
+
+  --accent-h: 228;
+  --accent-s: 100%;
+  --accent-l: 69%;
+
+  --color-primary-accent: hsl(
+    var(--accent-h), 
+    var(--accent-s), 
+    var(--accent-l)
+  );
+  --color-primary-accent-hover: hsl(
+    var(--accent-h), 
+    var(--accent-s), 
+    calc(var(--accent-l) + 10%)
+  );
+
+  --color-text-default: hsl(215, 39%, 81%);
+  --color-code: hsl(248, 100%, 85%);
+  --color-code-highlight: hsla(248, 100%, 85%, 0.1);
+
+  --img-grid-gap: 7px;
+  --img-border-radius: 4px;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-canvas-default) !important;
+}
+
+.markdown-preview {
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text-default);
+  }
+  
+  p, span, strong, li {
+    color: var(--color-text-default);
+  }
+
+  code {
+    color: var(--color-code);
+    background-color: var(--color-code-highlight)
+  }
+
+  a {
+    color: var(--color-primary-accent);
+  }
+  
+  a:hover {
+    color: var(--color-primary-accent-hover);
+  }
+}
+
+.img-grid {
+  margin: 16px 0;
+  
+  p {
+    margin: 0;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(0, 1fr));
+    grid-gap: var(--img-grid-gap, 7px);
+
+    br {
+      display: none;
+    }
+    
+    img {
+      flex: 1;
+      align-self: stretch;
+      object-fit: cover;
+      border-radius: var(--img-border-radius, 4px);
+    }
+  }
+
+  p + p {
+    margin-top: var(--img-grid-gap, 7px);
+  }
+}

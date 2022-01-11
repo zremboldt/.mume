@@ -1,0 +1,21 @@
+{
+  "name": "mume",
+  "version": "1.0.0",
+  "description": "Markdown Preview Enhanced is a SUPER POWERFUL markdown extension for Visual Studio Code.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zremboldt/.mume.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zremboldt/.mume/issues"
+  },
+  "homepage": "https://github.com/zremboldt/.mume#readme",
+  "dependencies": {
+    "node-html-parser": "^5.2.0"
+  }
+}

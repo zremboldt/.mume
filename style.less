@@ -27,8 +27,8 @@
   --color-code: hsl(248, 100%, 85%);
   --color-code-highlight: hsla(248, 100%, 85%, 0.1);
 
-  --img-grid-gap: 7px;
-  --img-border-radius: 4px;
+  --card-grid-gap: 10px;
+  --card-border-radius: 10px;
 }
 
 html {
@@ -61,30 +61,26 @@ body {
   a:hover {
     color: var(--color-primary-accent-hover);
   }
+
+  img:not(.card img) {
+    border-radius: var(--card-border-radius);
+  }
 }
 
 .img-grid {
-  margin: 16px 0;
-  
-  p {
-    margin: 0;
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(0, 1fr));
-    grid-gap: var(--img-grid-gap, 7px);
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: var(--card-grid-gap, 7px);
+  margin: 20px 0;
 
-    br {
-      display: none;
-    }
-    
-    img {
-      flex: 1;
-      align-self: stretch;
-      object-fit: cover;
-      border-radius: var(--img-border-radius, 4px);
-    }
-  }
+  .card {
+    background-color: #222;
+    border-radius: var(--card-border-radius);
+    overflow: hidden;
+    padding-bottom: 20px;
 
-  p + p {
-    margin-top: var(--img-grid-gap, 7px);
+    *:not(img) {
+      margin-inline: 20px;
+    }
   }
 }

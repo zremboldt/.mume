@@ -48,7 +48,6 @@ function populateCards(htmlStr) {
         nextEl.remove()
       } else {
         shouldCopyElement = false;
-        console.log('OUT ON DIV')
       }
     }
 

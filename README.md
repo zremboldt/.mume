@@ -28,3 +28,6 @@ I want to be able to designate the start of a card-grid in my markdown and then 
 The parser will pick each of these up and wrap them in a div with a class of `card` allowing me to create a grid of cards in my markdown preview.
 
 In the end I still have future proof markdown files that can be used elsewhere they just won't display in a grid without the parser and styling.
+
+## I got the MVP working! 🎉
+![](got-it-working.png)

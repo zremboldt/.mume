@@ -20,40 +20,45 @@ function unwrapImageTags(root) {
   return root.toString();
 }
 
-function createCardElements(htmlStr) {
-  const root = HTMLParser.parse(htmlStr);
+function createCards(htmlString) {
+  const root = HTMLParser.parse(htmlString);
   const gridImages = [...root.querySelectorAll('.img-grid img')];
 
   gridImages.forEach(img => {
-    img.insertAdjacentHTML('beforebegin', '<div class="card"></div>');
-  })
-
-  return root.toString();
-}
-
-function populateCards(htmlStr) {
-  const root = HTMLParser.parse(htmlStr);
-  const cards = [...root.querySelectorAll('.card')];
-
-  cards.forEach(card => {
-    const arrOfElementStrings = [];
+    let cardImageHTML = img.toString();
+    let cardContentHTML = [];
     
     let shouldCopyElement = true;
     
     while (shouldCopyElement) {
-      const nextEl = card.nextElementSibling;
+      const nextEl = img.nextElementSibling;
 
-      if (nextEl && nextEl.rawTagName !== 'div') {
-        arrOfElementStrings.push(nextEl)
+      if (nextEl && nextEl.rawTagName !== 'img') {
+        cardContentHTML.push(nextEl.toString())
         nextEl.remove()
       } else {
         shouldCopyElement = false;
       }
     }
 
-    const cardElementsAsString = arrOfElementStrings.join('').toString();
+    const cardMarkup = `
+      <article class="card">
+        ${cardImageHTML}
+        <div class="card-content">
+          ${cardContentHTML.join('')}
+        </div>
+        
+        <div class="modal">
+          ${cardImageHTML}
+          <div class="modal-content">
+            ${cardContentHTML.join('')}
+          </div>
+        </div>
+      </article>
+    `;
 
-    card.insertAdjacentHTML('afterbegin', cardElementsAsString);
+    img.insertAdjacentHTML('afterend', cardMarkup);
+    img.remove();
   })
 
   return root.toString();
@@ -74,11 +79,10 @@ const htmlParse = (html) => {
   const root = HTMLParser.parse(html);
 
   removeBrElements(root);
-  const unwrappedImages = unwrapImageTags(root);
-  const withCardElements = createCardElements(unwrappedImages);
-  const withPopulatedCards = populateCards(withCardElements)
+  const withUnwrappedImages = unwrapImageTags(root);
+  const withCards = createCards(withUnwrappedImages);
 
-  return withPopulatedCards;
+  return withCards;
 };
 
 // 

@@ -41,17 +41,32 @@ function createCards(htmlString) {
       }
     }
 
+    const handleCardClick = `
+      const handler = () => {
+        const modalContainer = this.querySelector('.modal-container');
+        const modalBackground = this.querySelector('.modal-background');
+
+        modalBackground.classList.toggle('active');
+        modalContainer.classList.toggle('active');
+      }
+      handler();
+    `;
+
     const cardMarkup = `
-      <article class="card">
+      <article class="card" onclick="${handleCardClick}">
         ${cardImageHTML}
         <div class="card-content">
           ${cardContentHTML.join('')}
         </div>
         
-        <div class="modal">
-          ${cardImageHTML}
-          <div class="modal-content">
-            ${cardContentHTML.join('')}
+        <div class="modal-background"></div>
+        
+        <div class="modal-container">
+          <div class="modal">
+            ${cardImageHTML}
+            <div class="modal-content">
+              ${cardContentHTML.join('')}
+            </div>
           </div>
         </div>
       </article>
@@ -76,6 +91,7 @@ const markdownParse = (markdown) => {
 };
 
 const htmlParse = (html) => {
+  console.log(html)
   const root = HTMLParser.parse(html);
 
   removeBrElements(root);

@@ -9,7 +9,8 @@
   --content-max-width: 40rem;
 
   // Colors
-  --color-canvas-default: hsl(216, 28%, 7%);
+  --color-canvas-default: hsl(222, 25%, 12%);
+  --color-card-background: hsl(222, 45%, 8%);
 
   --accent-h: 228;
   --accent-s: 100%;
@@ -31,8 +32,12 @@
   --color-code-highlight: hsla(248, 100%, 85%, 0.1);
 
   // Elements
-  --card-grid-gap: 10px;
-  --border-radius-lg: 10px;
+  --card-grid-gap: 20px;
+  --border-radius-md: 10px;
+  --border-radius-sm: 4px;
+
+  // Easing
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 html {
@@ -44,9 +49,7 @@ body {
   background-color: var(--color-canvas-default) !important;
 }
 
-.markdown-preview {
-  // max-width: var(--content-max-width);
-
+.mume.markdown-preview {
   h1, h2, h3, h4, h5, h6 {
     color: var(--color-text-default);
   }
@@ -68,9 +71,10 @@ body {
     color: var(--color-primary-accent-hover);
   }
 
-  img {
+  > img {
     display: block;
-    border-radius: var(--border-radius-lg);
+    width: 100%;
+    border-radius: var(--border-radius-sm);
   }
 }
 
@@ -78,38 +82,111 @@ body {
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
   grid-template-rows: auto;
-  column-gap: var(--card-grid-gap, 7px);
-  row-gap: 36px;
+  grid-gap: var(--card-grid-gap);
   margin: 20px 0;
 }
 
 .card {
-  img {
-    cursor:zoom-in;
+  position: relative;
+  display: flex;
+  background-color: var(--color-card-background);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  cursor:zoom-in;
+
+  & > img {
+    flex: 1;
+    transition: opacity 150ms ease-in-out;
+    object-fit: cover;
+  }
+  
+  &:hover > img {
+    opacity: 0.2;
   }
 
   .card-content {
-    padding-right: 20px;
+    position: absolute;
+    bottom: 0;
+    padding: 0 50px 8px 10px;
+    transition: opacity 150ms ease-in-out, transform 400ms var(--ease-out-quart);
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
 
     * {
+      display: none;
       margin: 0;
-      margin-top: 0.4em;
       font-size: 14px;
     }
 
     :first-child {
-      margin-top: 1.1rem;
+      display: block;
     }
 
-    p {
+    p:first-of-type {
+      // Handles truncating text
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical; 
       overflow: hidden;
+      //
+      margin-top: 0.4em;
+      line-height: 1.4;
     }
+  }
+
+  &:hover .card-content {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.modal-background {
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  background-color: hsla(222, 45%, 8%, 0.9);
+  pointer-events: none;
+  opacity: 0;
+  
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.modal-container {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  transition: 150ms var(--ease-out-quart);
+  opacity: 0;
+  transform: scale(0.9);
+
+  &.active {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
 .modal {
-  display: none;
+  max-width: 500px;
+  padding: 0;
+  background-color: rgb(39, 41, 59); // TODO
+  box-shadow: 0 12px 50px -6px hsla(222, 45%, 6%, 1);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+
+  .modal-content {
+    padding: 0 20px;
+  }
+
+  img {
+    border-radius: 0;
+  }
 }
+

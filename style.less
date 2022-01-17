@@ -9,8 +9,10 @@
   --content-max-width: 40rem;
 
   // Colors
-  --color-canvas-default: hsl(222, 25%, 12%);
+  --color-canvas-default: hsl(219, 46%, 11%);
+  --color-canvas-light: hsl(219, 34%, 17%);
   --color-card-background: hsl(222, 45%, 8%);
+  --color-border: hsl(224, 22%, 21%);
   
   --color-indigo: hsl(228, 100%, 69%);
   --color-indigo-light: hsl(228, 100%, 79%);
@@ -67,10 +69,18 @@ body {
     color: var(--color-indigo-light);
   }
 
-  > img {
+  img {
     display: block;
+  }
+
+  > img {
     width: 100%;
     border-radius: var(--border-radius-sm);
+  }
+
+  hr {
+    height: 2px;
+    background-color: var(--color-border);
   }
 }
 
@@ -172,8 +182,10 @@ body {
 .modal {
   max-width: 800px;
   padding: 0;
-  background-color: rgb(39, 41, 59); // TODO
-  box-shadow: 0 12px 50px -6px hsla(222, 45%, 6%, 1);
+  background-color: var(--color-canvas-light);
+  box-shadow: 0 6px 40px -4px hsla(230, 100%, 75%, 0.4);
+  box-shadow: 0 0 0 7px hsla(230, 100%, 65%, 0.25);
+  border: 1px solid hsl(230, 100%, 67%);
   border-radius: var(--border-radius-md);
   overflow: hidden;
 

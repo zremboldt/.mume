@@ -11,25 +11,16 @@
   // Colors
   --color-canvas-default: hsl(222, 25%, 12%);
   --color-card-background: hsl(222, 45%, 8%);
+  
+  --color-indigo: hsl(228, 100%, 69%);
+  --color-indigo-light: hsl(228, 100%, 79%);
+  --color-pink: hsl(329, 86%, 70%);
 
-  --accent-h: 228;
-  --accent-s: 100%;
-  --accent-l: 69%;
-
-  --color-primary-accent: hsl(
-    var(--accent-h), 
-    var(--accent-s), 
-    var(--accent-l)
-  );
-  --color-primary-accent-hover: hsl(
-    var(--accent-h), 
-    var(--accent-s), 
-    calc(var(--accent-l) + 10%)
-  );
-
-  --color-text-default: hsl(215, 39%, 81%);
+  --color-text-white: hsl(0, 0%, 100%);
+  --color-text-steel: hsl(215, 20%, 65%);
+  
   --color-code: hsl(248, 100%, 85%);
-  --color-code-highlight: hsla(248, 100%, 85%, 0.1);
+  --color-code-background: hsla(248, 100%, 85%, 0.1);
 
   // Elements
   --card-grid-gap: 20px;
@@ -51,24 +42,29 @@ body {
 
 .mume.markdown-preview {
   h1, h2, h3, h4, h5, h6 {
-    color: var(--color-text-default);
+    color: var(--color-text-white);
   }
   
-  p, span, strong, li {
-    color: var(--color-text-default);
+  strong {
+    color: var(--color-pink);
+    text-transform: uppercase;
+  }
+
+  p, span, li {
+    color: var(--color-text-steel);
   }
 
   code {
     color: var(--color-code);
-    background-color: var(--color-code-highlight)
+    background-color: var(--color-code-background)
   }
 
   a {
-    color: var(--color-primary-accent);
+    color: var(--color-indigo);
   }
   
   a:hover {
-    color: var(--color-primary-accent-hover);
+    color: var(--color-indigo-light);
   }
 
   > img {
@@ -174,7 +170,7 @@ body {
 }
 
 .modal {
-  max-width: 500px;
+  max-width: 800px;
   padding: 0;
   background-color: rgb(39, 41, 59); // TODO
   box-shadow: 0 12px 50px -6px hsla(222, 45%, 6%, 1);

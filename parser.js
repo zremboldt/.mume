@@ -22,7 +22,7 @@ function unwrapImageTags(root) {
 
 function createCards(htmlString) {
   const root = HTMLParser.parse(htmlString);
-  const gridImages = [...root.querySelectorAll('.img-grid img')];
+  const gridImages = [...root.querySelectorAll('.md-img-grid img')];
 
   gridImages.forEach(img => {
     let cardImageHTML = img.toString();
@@ -43,28 +43,28 @@ function createCards(htmlString) {
 
     const handleCardClick = `
       const handler = () => {
-        const modalContainer = this.querySelector('.modal-container');
-        const modalBackground = this.querySelector('.modal-background');
+        const modalContainer = this.querySelector('.md-modal-container');
+        const modalBackground = this.querySelector('.md-modal-background');
 
-        modalBackground.classList.toggle('active');
-        modalContainer.classList.toggle('active');
+        modalBackground.classList.toggle('md-active');
+        modalContainer.classList.toggle('md-active');
       }
       handler();
     `;
 
     const cardMarkup = `
-      <article class="card" onclick="${handleCardClick}">
+      <article class="md-card" onclick="${handleCardClick}">
         ${cardImageHTML}
-        <div class="card-content">
+        <div class="md-card-content">
           ${cardContentHTML.join('')}
         </div>
         
-        <div class="modal-background"></div>
+        <div class="md-modal-background"></div>
         
-        <div class="modal-container">
-          <div class="modal">
+        <div class="md-modal-container">
+          <div class="md-modal">
             ${cardImageHTML}
-            <div class="modal-content">
+            <div class="md-modal-content">
               ${cardContentHTML.join('')}
             </div>
           </div>
@@ -85,13 +85,12 @@ function createCards(htmlString) {
 // 
 
 const markdownParse = (markdown) => {
-  markdown = markdown.replace(/<!-- grid-start -->/g, () => `<div class="img-grid">`)
+  markdown = markdown.replace(/<!-- grid-start -->/g, () => `<div class="md-img-grid">`)
   markdown = markdown.replace(/<!-- grid-end -->/g, () => `</div>`)
   return markdown;
 };
 
 const htmlParse = (html) => {
-  console.log(html)
   const root = HTMLParser.parse(html);
 
   removeBrElements(root);

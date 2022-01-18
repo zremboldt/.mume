@@ -9,7 +9,7 @@
   --content-max-width: 40rem;
 
   // Colors
-  --color-canvas-default: hsl(219, 46%, 11%);
+  --color-canvas-default: hsl(219, 36%, 11%);
   --color-canvas-light: hsl(219, 34%, 17%);
   --color-card-background: hsl(222, 45%, 8%);
   --color-border: hsl(224, 22%, 21%);
@@ -46,6 +46,10 @@ body {
   h1, h2, h3, h4, h5, h6 {
     color: var(--color-text-white);
   }
+
+  > h1, > h2 {
+    border-bottom: 2px solid var(--color-border);
+  }
   
   strong {
     color: var(--color-pink);
@@ -75,6 +79,7 @@ body {
 
   > img {
     width: 100%;
+    margin: var(--card-grid-gap) 0;
     border-radius: var(--border-radius-sm);
   }
 
@@ -84,7 +89,7 @@ body {
   }
 }
 
-.img-grid {
+.md-img-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
   grid-template-rows: auto;
@@ -92,7 +97,7 @@ body {
   margin: 20px 0;
 }
 
-.card {
+.md-card {
   position: relative;
   display: flex;
   background-color: var(--color-card-background);
@@ -110,7 +115,7 @@ body {
     opacity: 0.2;
   }
 
-  .card-content {
+  .md-card-content {
     position: absolute;
     bottom: 0;
     padding: 0 50px 8px 10px;
@@ -140,13 +145,13 @@ body {
     }
   }
 
-  &:hover .card-content {
+  &:hover .md-card-content {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
 
-.modal-background {
+.md-modal-background {
   position: fixed;
   inset: 0;
   z-index: 9;
@@ -154,33 +159,35 @@ body {
   pointer-events: none;
   opacity: 0;
   
-  &.active {
+  &.md-active {
     opacity: 1;
-    pointer-events: auto;
   }
 }
 
-.modal-container {
+.md-modal-container {
   position: fixed;
   inset: 0;
   z-index: 10;
+  padding: 0 20px;
   max-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow-y: auto;
   pointer-events: none;
   transition: 150ms var(--ease-out-quart);
   opacity: 0;
   transform: scale(0.9);
 
-  &.active {
+  &.md-active {
     opacity: 1;
     transform: scale(1);
+    pointer-events: auto;
   }
 }
 
-.modal {
-  max-width: 400px;
+.md-modal {
+  margin: 80px auto;
+  max-width: 880px;
+  display: flex;
+  
   padding: 0;
   background-color: var(--color-canvas-light);
   box-shadow: 0 0 0 7px hsla(230, 100%, 65%, 0.15);
@@ -188,15 +195,15 @@ body {
   border-radius: var(--border-radius-md);
   overflow: hidden;
 
-  .modal-content {
+  .md-modal-content {
+    flex: 1;
     padding: 0 20px;
   }
-
+  
   img {
-    max-height: 70vh;
-    width: 100%;
+    width: 60%;
+    max-width: 500px;
     object-fit: cover;
-    object-position: center;
     border-radius: 0;
   }
 }

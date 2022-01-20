@@ -47,7 +47,7 @@ body {
     color: var(--color-text-white);
   }
 
-  > h1, > h2 {
+  > h2 {
     border-bottom: 2px solid var(--color-border);
   }
   
@@ -190,21 +190,22 @@ body {
   
   padding: 0;
   background-color: var(--color-canvas-light);
-  box-shadow: 0 0 0 7px hsla(230, 100%, 65%, 0.15);
-  border: 1px solid hsl(230, 100%, 67%);
   border-radius: var(--border-radius-lg);
-  overflow: hidden;
+  box-shadow: 0 0 50px hsla(231, 76%, 5%, 0.9);
+  // box-shadow: 0 0 0 7px hsla(230, 100%, 65%, 0.15);
+  // border: 1px solid hsl(230, 100%, 67%);
+  // overflow: hidden;
 
   .md-modal-content {
     flex: 1;
-    padding: 0 20px;
+    padding: 15px 30px;
   }
   
   img {
     width: 60%;
     max-width: 500px;
     object-fit: cover;
-    border-radius: 0;
+    border-radius: var(--border-radius-lg);
   }
 }
 
